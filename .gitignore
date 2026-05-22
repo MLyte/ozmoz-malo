@@ -1,0 +1,21 @@
+# Raw source assets kept locally, not part of the deployable WordPress package.
+/_source-assets/
+
+# WordPress generated content.
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/backup*/
+/wp-content/backups/
+
+# Local/editor noise.
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Environment and temporary files.
+.env
+.env.*
+*.tmp
+*.bak

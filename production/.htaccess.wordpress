@@ -1,0 +1,40 @@
+# .htaccess WordPress pour ozmoz-malo.co
+#
+# A placer a la racine de l'installation WordPress.
+# Si l'hebergeur genere deja un .htaccess, fusionner prudemment les blocs.
+
+# Protection de fichiers sensibles.
+<FilesMatch "^(wp-config\.php|\.env|composer\.(json|lock)|package(-lock)?\.json)$">
+  Require all denied
+</FilesMatch>
+
+# Bloquer l'acces direct aux backups ou exports accidentels.
+<FilesMatch "\.(sql|bak|old|orig|save|swp|zip|tar|gz)$">
+  Require all denied
+</FilesMatch>
+
+# Redirection HTTPS optionnelle.
+# Decommenter ce bloc uniquement si le certificat SSL est actif et valide.
+# RewriteEngine On
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirection www optionnelle.
+# Choix recommande: domaine nu ozmoz-malo.co.
+# Decommenter si l'hebergeur ne gere pas deja cette redirection.
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^www\.ozmoz-malo\.co$ [NC]
+# RewriteRule ^ https://ozmoz-malo.co%{REQUEST_URI} [L,R=301]
+
+# BEGIN WordPress
+# Les regles ci-dessous permettent les permaliens WordPress.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

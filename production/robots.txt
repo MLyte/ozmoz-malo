@@ -1,0 +1,13 @@
+# robots.txt production pour ozmoz-malo.eu
+#
+# Objectif: laisser indexer le site public, mais eviter les pages techniques.
+
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-json/wp/v2/users
+Allow: /wp-admin/admin-ajax.php
+Allow: /wp-content/uploads/
+Allow: /wp-content/themes/ozmoz-malo/assets/
+
+Sitemap: https://ozmoz-malo.eu/sitemap.xml
